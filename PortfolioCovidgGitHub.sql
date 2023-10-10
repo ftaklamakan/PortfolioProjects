@@ -1,3 +1,5 @@
+-- Exploring 2020-2021 Covid Global Data 
+
 SELECT *
 
 	FROM PortfolioProject.CovidDeaths
