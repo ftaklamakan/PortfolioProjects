@@ -1,3 +1,6 @@
+-- Cleaning Nashville Housing Data via SQL
+
+
 SELECT *
 FROM PortfolioProject.dbo.NashvilleHousing
 
