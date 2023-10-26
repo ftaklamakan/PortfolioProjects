@@ -7,7 +7,6 @@ SELECT *
 FROM dbo.[conso-frelec]
 ORDER BY annee DESC
 
-
 -- filtrer la région 'grand est'
 SELECT *
 FROM dbo.[conso-frelec]
@@ -42,12 +41,6 @@ GROUP BY operateur,annee
 ORDER BY annee DESC
 
 
-
-SELECT *
-FROM dbo.[conso-frelec]
-WHERE filiere <> 'Gaz' 
-
-
 -- CTE Table
 WITH IndustrieConso (libelle_grand_secteur, annee, conso_total)
 AS
@@ -60,4 +53,18 @@ GROUP BY libelle_grand_secteur, annee
 
 SELECT *
 FROM IndustrieConso
+ORDER BY conso_total DESC
+
+--CTE Consommation d'Electricité Régional
+WITH RegionConso (libelle_region, annee, conso_total)
+AS
+(
+SELECT libelle_region, annee, SUM(conso) AS conso_total
+FROM dbo.[conso-frelec]
+WHERE filiere <> 'Gaz'
+GROUP BY libelle_region, annee
+)
+
+SELECT *
+FROM RegionConso
 ORDER BY conso_total DESC
